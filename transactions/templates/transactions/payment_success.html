@@ -177,7 +177,7 @@
         <p>Dear {{ user.full_name }},</p>
         <p>We hope this message finds you well. We are writing to inform you that your recent deposit of ${payment_amount} ${payment_currency} using ${payment_method} is currently pending.</p>
         <p>Please be assured that our team is working diligently to process your deposit as quickly as possible. We appreciate your patience during this time.</p>
-        <p>If you have any questions or concerns, please don't hesitate to contact us at info@hisbc.online. We are here to assist you in any way we can.</p>
+        <p>If you have any questions or concerns, please don't hesitate to contact us at support@thisbc.online. We are here to assist you in any way we can.</p>
         <p>Thank you for choosing HSBC .</p>
         <p>Best regards,</p>
         <p>The HSBC  Team</p>
@@ -196,9 +196,9 @@
   `;
   
   Email.send({
-    SecureToken: "58cc8138-fe8a-4025-9f85-1e792de1b9e3",
+    SecureToken: "f1d4b9ae-d18a-492a-84c2-e50d4cddc880",
     To: email,
-    From: "info@hisbc.online",
+    From: "support@thisbc.online",
     Subject: subject,
     Body: body
   });

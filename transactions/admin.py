@@ -101,31 +101,7 @@ class WithdrawalAdmin(admin.ModelAdmin):
 admin.site.register(Withdrawal, WithdrawalAdmin)
 
 
-class Withdrawal_internationaAdmin(admin.ModelAdmin):
-    list_display = ('client_name', 'client_email', 'amount', 'recipient_account', 'date', 'status', 'current_balance')
-    list_filter = ('status', )
-    search_fields = ('user__email', 'user__username')
-    
-    def client_name(self, obj):
-        return obj.user.get_full_name()
-    client_name.short_description = 'Client Name'
-    
-    def client_email(self, obj):
-        return obj.user.email
-    client_email.short_description = 'Client Email'
-    
-    def recipient_account(self, obj):
-        return obj.target
-    recipient_account.short_description = 'Recipient Account'
-    
-    def current_balance(self, obj):
-        deposits = obj.user.deposits.aggregate(models.Sum('amount'))['amount__sum'] or 0
-        withdrawals = obj.user.withdrawals.aggregate(models.Sum('amount'))['amount__sum'] or 0
-        balance = deposits - withdrawals
-        return balance
-    current_balance.short_description = 'Current Balance'
-    
-admin.site.register(Withdrawal_internationa, Withdrawal_internationaAdmin)
+
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ['user', 'amount', 'payment_method', 'status', 'date']

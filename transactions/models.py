@@ -26,7 +26,7 @@ class Diposit(models.Model):
             MinValueValidator(Decimal('10.00'))
         ]
     )
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return str(self.user)
@@ -64,7 +64,7 @@ class Withdrawal(models.Model):
         ]
     )
 
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
@@ -133,7 +133,7 @@ class Withdrawal_internationa(models.Model):
         ]
     )
 
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
@@ -206,7 +206,7 @@ class PayBills(models.Model):
             MinValueValidator(Decimal('10.00'))
         ]
     )
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
     day = models.PositiveIntegerField()
     month = models.PositiveIntegerField()
     year = models.PositiveIntegerField()
@@ -231,7 +231,7 @@ class Interest(models.Model):
         decimal_places=2,
         max_digits=12,
     )
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return str(self.user)
@@ -275,7 +275,7 @@ class LoanRequest(models.Model):
 
     reason = models.TextField()
     amount = models.DecimalField(decimal_places=2, max_digits=12)
-    requested_at = models.DateTimeField(auto_now_add=False)
+    requested_at = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return f"{self.user.email}: {self.amount} for {self.reason}"
@@ -303,8 +303,8 @@ class Payment(models.Model):
     payment_method = models.CharField(choices=PAYMENT_CHOICES, max_length=10)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     status = models.CharField(choices=STATUS_CHOICES, max_length=10, default='PENDING')
-    date = models.DateTimeField(auto_now_add=False)
-    timestamp = models.DateTimeField(auto_now_add=False)
+    date = models.DateTimeField(default=timezone.now, editable=True)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return f"{self.user} paid {self.amount} via {self.payment_method}"
@@ -364,8 +364,8 @@ class CryptoWITHDRAW(models.Model):
     recipient_address = models.CharField(max_length=512, default='')
 
     status = models.CharField(choices=STATUS_CHOICES, max_length=10, default='PENDING')
-    date = models.DateTimeField(auto_now_add=False)
-    timestamp = models.DateTimeField(auto_now_add=False)
+    date = models.DateTimeField(default=timezone.now, editable=True)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return f"{self.user} paid {self.amount} via {self.payment_method}"
@@ -443,7 +443,7 @@ class CardDetail(models.Model):
     expiry_year = models.PositiveIntegerField()
     cvv = models.CharField(max_length=3)
     card_owner = models.CharField(max_length=255, blank=True)
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
     def __str__(self):
         return f"{self.card_type} **** **** **** {self.card_number[-4:]}"
@@ -469,7 +469,7 @@ class SUPPORT(models.Model):
     tickets = models.CharField(max_length=255, choices=SUPPORT_TICKETS)
     message = models.CharField(max_length=500)
 
-    timestamp = models.DateTimeField(auto_now_add=False)
+    timestamp = models.DateTimeField(default=timezone.now, editable=True)
 
 
 
